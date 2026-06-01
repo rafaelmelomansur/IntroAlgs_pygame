@@ -10,7 +10,7 @@ A proposta deve apresentar uma ideia simples, clara e viável para ser desenvolv
 
 ## 2. Integrantes do grupo
 
-- Nome 1: Rafael Melo Mansur Cardoso
+- Nome: Rafael Melo Mansur Cardoso
 
 ## 3. Tipo de jogo
 
