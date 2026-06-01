@@ -42,7 +42,7 @@ A proposta deve apresentar uma ideia simples, clara e viável para ser desenvolv
 
 ## 9. Elementos previstos no jogo
 
-## Jogador ou elemento principal
+> Jogador ou elemento principal
 
 - Uma nave espacial controlada pelas setas esquerda e direita do teclado.
 
