@@ -42,19 +42,19 @@ A proposta deve apresentar uma ideia simples, clara e viável para ser desenvolv
 
 ## 9. Elementos previstos no jogo
 
-- Jogador ou elemento principal
+- Jogador ou elemento principal:
 
 > Uma nave espacial controlada pelas setas esquerda e direita do teclado.
 
-- Obstáculos, inimigos ou desafios
+- Obstáculos, inimigos ou desafios:
 
 > Meteoros de diferentes tamanhos que caem do topo da tela em posições aleatórias.
 
-- Itens, alvos ou objetos de interação
+- Itens, alvos ou objetos de interação:
 
 > Cristais de energia brilhantes que aparecem raramente e dão bônus de pontuação.
 
-- Pontuação, vidas, tempo ou progresso
+- Pontuação, vidas, tempo ou progresso:
 
 > Display no topo da tela mostrando Vidas (ícones de coração ou texto), Pontuação Atual e Tempo de Jogo.
 
