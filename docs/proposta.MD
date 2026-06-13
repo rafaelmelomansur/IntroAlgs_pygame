@@ -1,30 +1,24 @@
-# Proposta Inicial do Jogo
+# Nome do jogo
 
-Este documento deve ser preenchido pelo grupo na Semana 1 do projeto.
+> Aventura Galáctica
 
-A proposta deve apresentar uma ideia simples, clara e viável para ser desenvolvida com Python e Pygame dentro do prazo disponível.
-
-## 1. Nome provisório do jogo
-
-> Aventura Galáctica: Defesa Estelar
-
-## 2. Integrantes do grupo
+## 1. Integrantes do grupo
 
 - Nome: Rafael Melo Mansur Cardoso
 
-## 3. Tipo de jogo
+## 2. Tipo de jogo
 
 > Nave desviando de meteoros e coletando recursos.
 
-## 4. Descrição geral do jogo
+## 3. Descrição geral do jogo
 
 > O jogo consiste de uma nave espacial no centro inferior da tela que pode se mover para os lados. Meteoros caem do topo da tela em velocidades variadas e o jogador tem que desviar. Ocasionalmente, cristais de energia (itens de coleta) caem e devem ser coletados para aumentar a pontuação. Conforme o tempo passa, a frequência de meteoros aumenta.
 
-## 5. Objetivo do jogador
+## 4. Objetivo do jogador
 
 > Sobreviver pelo maior tempo possível e acumular a maior pontuação através da coleta de cristais e tempo de sobrevivência.
 
-## 6. Regras principais
+## 5. Regras principais
 
 - O jogador começa com 3 vidas.
 - Cada cristal coletado vale 50 pontos.
@@ -32,15 +26,15 @@ A proposta deve apresentar uma ideia simples, clara e viável para ser desenvolv
 - A cada 30 segundos, a velocidade de queda dos meteoros aumenta levemente.
 - A partida termina quando as vidas chegam a zero.
 
-## 7. Condição de vitória
+## 6. Condição de vitória
 
 > Por ser um jogo de sobrevivência, não tem uma "vitória" definitiva, mas o jogador vence o seu próprio recorde que será salvo.
 
-## 8. Condição de derrota ou encerramento
+## 7. Condição de derrota ou encerramento
 
 > Perder todas as 3 vidas ao colidir com meteoros.
 
-## 9. Elementos previstos no jogo
+## 8. Elementos previstos no jogo
 
 - Jogador ou elemento principal:
 
@@ -58,14 +52,14 @@ A proposta deve apresentar uma ideia simples, clara e viável para ser desenvolv
 
 > Display no topo da tela mostrando Vidas (ícones de coração ou texto), Pontuação Atual e Tempo de Jogo.
 
-## 10. Controles previstos
+## 9. Controles previstos
 
 - Seta para esquerda: mover nave para a esquerda
 - Seta para direita: mover nave para a direita
 - ESC: sair do jogo / pausar
 - R: reiniciar o jogo na tela de Game Over
 
-## 11. Organização inicial do código
+## 10. Organização inicial do código
 
 - `main.py`: Ponto de entrada que inicializa o Pygame e chama o loop principal.
 - `src/engine.py`: Controla o loop, eventos e telas (Menu, Jogo, Game Over).
@@ -73,21 +67,21 @@ A proposta deve apresentar uma ideia simples, clara e viável para ser desenvolv
 - `src/settings.py`: Guarda as configurações como cores, tamanho da tela, e velocidades iniciais.
 - `src/utils.py`: Funções para carregar assets e manipular arquivos de recorde (JSON/TXT).
 
-## 12. Recursos externos previstos
+## 11. Recursos externos previstos
 
 > Imagens de naves e meteoros de bancos gratuitos (ex: Kenney.nl ou OpenGameArt). Sons de explosão e coleta simples.
 
-## 13. Principais dificuldades esperadas
+## 12. Principais dificuldades esperadas
 
 - Detecção de colisão precisa entre a nave e os meteoros.
 - Gerenciamento eficiente da geração aleatória de objetos para não sobrecarregar a tela.
 - Implementação correta da persistência do recorde em arquivo.
 
-## 14. Escopo mínimo para a entrega final
+## 13. Escopo mínimo para a entrega final
 
 > Uma nave funcional que se move, meteoros caindo que causam perda de vida, sistema de pontuação por tempo, tela de Game Over e salvamento de recorde.
 
-## 15. Possíveis melhorias, caso haja tempo
+## 14. Possíveis melhorias, caso haja tempo
 
 Melhorias possíveis:
 

@@ -9,45 +9,53 @@ def load_image(path, scale=None):
             image = pygame.transform.scale(image, scale)
         return image
     except:
-        # Fallback visual se a imagem falhar no computador do aluno
         surface = pygame.Surface((50, 50))
-        surface.fill((0, 255, 0))
+        surface.fill((255, 0, 255))
         return surface
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = load_image(PLAYER_IMG, (50, 40))
+        self.image = load_image(PLAYER_IMG, (50, 38))
         self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect.centerx = WIDTH // 2
-        self.rect.bottom = HEIGHT - 20
+        self.rect.bottom = HEIGHT - 10
         self.speed_x = 0
 
     def update(self):
         self.speed_x = 0
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            self.speed_x = -PLAYER_SPEED
-        if keys[pygame.K_RIGHT]:
-            self.speed_x = PLAYER_SPEED
-        
+        if keys[pygame.K_LEFT]: self.speed_x = -PLAYER_SPEED
+        if keys[pygame.K_RIGHT]: self.speed_x = PLAYER_SPEED
         self.rect.x += self.speed_x
-        
-        # Limites da tela
         if self.rect.left < 0: self.rect.left = 0
         if self.rect.right > WIDTH: self.rect.right = WIDTH
 
 class Meteor(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        size = random.randint(30, 60)
+        size = random.randint(30, 70)
         self.image = load_image(METEOR_IMG, (size, size))
         self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect.x = random.randrange(WIDTH - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
-        self.speed_y = random.randrange(3, 7)
+        self.speed_y = random.randrange(METEOR_MIN_SPEED, METEOR_MAX_SPEED)
 
     def update(self):
         self.rect.y += self.speed_y
-        if self.rect.top > HEIGHT:
-            self.kill()
+        if self.rect.top > HEIGHT + 10: self.kill()
+
+class Crystal(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = load_image(CRYSTAL_IMG, (30, 30))
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(WIDTH - self.rect.width)
+        self.rect.y = random.randrange(-100, -40)
+        self.speed_y = CRYSTAL_SPEED
+
+    def update(self):
+        self.rect.y += self.speed_y
+        if self.rect.top > HEIGHT + 10: self.kill()
