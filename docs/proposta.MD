@@ -1,91 +1,78 @@
-# Nome do jogo
-
-> Aventura Galáctica
+# Proposta do Jogo: Aventura Galáctica: Defesa Estelar
 
 ## 1. Integrantes do grupo
 
-- Nome: Rafael Melo Mansur Cardoso
+- Rafael Melo Mansur Cardoso
 
 ## 2. Tipo de jogo
 
-> Nave desviando de meteoros e coletando recursos.
+> Jogo de sobrevivência 2D: Nave desviando de meteoros e coletando recursos.
 
 ## 3. Descrição geral do jogo
 
-> O jogo consiste de uma nave espacial no centro inferior da tela que pode se mover para os lados. Meteoros caem do topo da tela em velocidades variadas e o jogador tem que desviar. Ocasionalmente, cristais de energia (itens de coleta) caem e devem ser coletados para aumentar a pontuação. Conforme o tempo passa, a frequência de meteoros aumenta.
+> O jogo consiste em uma nave espacial no centro inferior da tela que pode se mover horizontalmente. Meteoros caem do topo da tela em velocidades variadas e o jogador tem que desviar. Ocasionalmente, cristais de energia caem e devem ser coletados para aumentar a pontuação. Conforme o tempo passa, o nível do jogo aumenta, o que eleva a frequência e a velocidade dos meteoros.
 
 ## 4. Objetivo do jogador
 
-> Sobreviver pelo maior tempo possível e acumular a maior pontuação através da coleta de cristais e tempo de sobrevivência.
+> Sobreviver pelo maior tempo possível e acumular a maior pontuação através da coleta de cristais e do tempo de sobrevivência, tentando bater o próprio recorde e alcançar o Top 5 do ranking local.
 
 ## 5. Regras principais
 
 - O jogador começa com 3 vidas.
 - Cada cristal coletado vale 50 pontos.
-- Colidir com um meteoro remove 1 vida.
-- A cada 30 segundos, a velocidade de queda dos meteoros aumenta levemente.
+- A cada 1 segundo sobrevivido, o jogador ganha 1 ponto.
+- Colidir com um meteoro remove 1 vida e destrói o meteoro.
+- A cada 30 segundos, o nível de dificuldade do jogo aumenta, elevando a velocidade máxima e a quantidade de meteoros.
 - A partida termina quando as vidas chegam a zero.
 
 ## 6. Condição de vitória
 
-> Por ser um jogo de sobrevivência, não tem uma "vitória" definitiva, mas o jogador vence o seu próprio recorde que será salvo.
+> Por ser um jogo infinito de sobrevivência, não há uma "vitória" definitiva, mas o jogador vence ao superar seu próprio recorde e entrar no Top 5 de pontuações salvas.
 
 ## 7. Condição de derrota ou encerramento
 
-> Perder todas as 3 vidas ao colidir com meteoros.
+> Perder todas as 3 vidas ao colidir com os meteoros.
 
-## 8. Elementos previstos no jogo
+## 8. Elementos implementados no jogo
 
-- Jogador ou elemento principal:
-
+- **Jogador (Nave):**
 > Uma nave espacial controlada pelas setas esquerda e direita do teclado.
 
-- Obstáculos, inimigos ou desafios:
+- **Obstáculos (Meteoros):**
+> Meteoros de diferentes tamanhos que caem do topo da tela em posições aleatórias. A velocidade e quantidade dependem do nível de dificuldade atual.
 
-> Meteoros de diferentes tamanhos que caem do topo da tela em posições aleatórias.
+- **Itens (Cristais):**
+> Cristais de energia brilhantes que aparecem mais raramente e dão bônus significativos de pontuação.
 
-- Itens, alvos ou objetos de interação:
+- **HUD (Interface):**
+> Display no topo da tela mostrando a Pontuação Atual, Vidas restantes, Nível atual e o Recorde Absoluto.
 
-> Cristais de energia brilhantes que aparecem raramente e dão bônus de pontuação.
+## 9. Controles
 
-- Pontuação, vidas, tempo ou progresso:
+- **Seta para esquerda (←)**: mover a nave para a esquerda
+- **Seta para direita (→)**: mover a nave para a direita
+- **ESC**: sair do jogo ou fechar a tela de game over
+- **R**: reiniciar o jogo rapidamente a partir da tela de Game Over
 
-> Display no topo da tela mostrando Vidas (ícones de coração ou texto), Pontuação Atual e Tempo de Jogo.
-
-## 9. Controles previstos
-
-- Seta para esquerda: mover nave para a esquerda
-- Seta para direita: mover nave para a direita
-- ESC: sair do jogo / pausar
-- R: reiniciar o jogo na tela de Game Over
-
-## 10. Organização inicial do código
+## 10. Organização do código
 
 - `main.py`: Ponto de entrada que inicializa o Pygame e chama o loop principal.
-- `src/engine.py`: Controla o loop, eventos e telas (Menu, Jogo, Game Over).
-- `src/entities.py`: Define as classes para Nave, Meteoro e Cristal.
-- `src/settings.py`: Guarda as configurações como cores, tamanho da tela, e velocidades iniciais.
-- `src/utils.py`: Funções para carregar assets e manipular arquivos de recorde (JSON/TXT).
+- `src/engine.py`: Controla o loop principal, as telas (Início, Jogo, Game Over), o aumento progressivo de dificuldade e os eventos.
+- `src/entities.py`: Define as classes de Sprites para Nave, Meteoro e Cristal.
+- `src/settings.py`: Guarda as configurações globais, cores, pontuações e velocidades.
+- `src/utils.py`: Funções para manipular a persistência em arquivos de texto (recorde e ranking) e renderização de texto.
+- `src/funcoes.py`: Funções puras de lógica do jogo.
 
-## 11. Recursos externos previstos
+## 11. Recursos externos utilizados
 
-> Imagens de naves e meteoros de bancos gratuitos (ex: Kenney.nl ou OpenGameArt). Sons de explosão e coleta simples.
+> As imagens da nave, meteoros, cristais e fundo pertencem ao pacote **Space Shooter Redux** do banco gratuito **Kenney.nl** (Licença CC0).
 
-## 12. Principais dificuldades esperadas
+## 12. Principais desafios encontrados
 
-- Detecção de colisão precisa entre a nave e os meteoros.
-- Gerenciamento eficiente da geração aleatória de objetos para não sobrecarregar a tela.
-- Implementação correta da persistência do recorde em arquivo.
+- Implementar o aumento progressivo de dificuldade equilibrando a velocidade e a taxa de spawn dos meteoros sem tornar o jogo impossível muito rápido.
+- Estruturar o código para que o loop principal (`engine.py`) ficasse limpo e a lógica pura fosse separada (`funcoes.py`) para facilitar os testes automatizados com `pytest`.
+- Gerenciar corretamente a gravação de dados em arquivos de texto simples, garantindo que o arquivo não corrompesse e que o ranking de Top 5 ficasse ordenado.
 
-## 13. Escopo mínimo para a entrega final
+## 13. Escopo final entregue
 
-> Uma nave funcional que se move, meteoros caindo que causam perda de vida, sistema de pontuação por tempo, tela de Game Over e salvamento de recorde.
-
-## 14. Possíveis melhorias, caso haja tempo
-
-Melhorias possíveis:
-
-- Sistema de "tiro" para destruir meteoros pequenos.
-- Diferentes tipos de naves para escolher.
-- Trilha sonora de fundo e efeitos sonoros variados.
-- Power-ups temporários (ex: escudo ou velocidade).
+> Uma nave funcional que se move horizontalmente; meteoros caindo com colisão por máscara de pixel (hitbox preciso); perda de vida ao colidir; sistema de pontuação híbrido (tempo e coleta de cristais); dificuldade que escala por tempo (níveis); telas de Início e Game Over; salvamento de Recorde Absoluto e Ranking (Top 5) em arquivos `.txt`.

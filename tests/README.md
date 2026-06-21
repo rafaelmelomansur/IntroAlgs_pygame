@@ -1,18 +1,14 @@
 # Testes
 
-Esta pasta contem testes automatizados do projeto.
+Esta pasta contém testes automatizados do projeto utilizando `pytest`.
 
 ## Arquivos
 
-- `test_logica.py`: valida funcoes puras de logica em `src/funcoes.py`.
+- `test_logica.py`: valida funções puras de lógica (pontos, dano, níveis) em `src/funcoes.py`.
+- `test_utils.py`: valida a persistência em arquivos (recorde e ranking) de `src/utils.py`.
 
 ## Como executar
 
 ```bash
-python -m pytest
+python -m pytest tests/ -v
 ```
-
-## Boas praticas
-
-- Crie testes para toda regra de pontuacao, vidas e condicoes de fim de jogo.
-- Prefira funcoes pequenas e testaveis no modulo `src/funcoes.py`.

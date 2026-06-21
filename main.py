@@ -1,16 +1,18 @@
 import sys
-from src.engine import Game
+from src.engine import Jogo
 
-def main():
+
+def principal():
     """Ponto de entrada principal do jogo."""
-    g = Game()
-    g.show_start_screen()
-    
-    while g.running:
-        g.new()
-        g.show_go_screen()
-    
+    jogo = Jogo()
+    jogo.show_start_screen()
+
+    while jogo.rodando:
+        jogo.new()
+        jogo.show_go_screen()
+
     sys.exit()
 
+
 if __name__ == "__main__":
-    main()
+    principal()

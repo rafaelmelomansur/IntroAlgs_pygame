@@ -1,13 +1,7 @@
-# Documentacao
+# Documentação
 
-Esta pasta concentra documentos de planejamento e apoio ao projeto.
+Esta pasta guarda documentos de apoio do projeto.
 
 ## Arquivos
 
-- `proposta.MD`: proposta inicial do jogo para preenchimento do grupo.
-
-## Sugestoes de uso
-
-- Registre decisoes importantes do projeto.
-- Documente mudancas de escopo.
-- Mantenha historico de ideias e melhorias planejadas.
+- `proposta.md`: Documento contendo a proposta final e o escopo do jogo, com regras, controles e detalhes de implementação.

@@ -2,60 +2,81 @@ import pygame
 import random
 from .settings import *
 
-def load_image(path, scale=None):
+
+def carregar_imagem(caminho, escala=None):
+    """Carrega uma imagem do disco. Retorna um quadrado magenta em caso de erro."""
     try:
-        image = pygame.image.load(path).convert_alpha()
-        if scale:
-            image = pygame.transform.scale(image, scale)
-        return image
-    except:
-        surface = pygame.Surface((50, 50))
-        surface.fill((255, 0, 255))
-        return surface
+        imagem = pygame.image.load(caminho).convert_alpha()
+        if escala:
+            imagem = pygame.transform.scale(imagem, escala)
+        return imagem
+    except Exception:
+        superficie = pygame.Surface((50, 50))
+        superficie.fill((255, 0, 255))
+        return superficie
 
-class Player(pygame.sprite.Sprite):
+
+class Jogador(pygame.sprite.Sprite):
+    """Nave espacial controlada pelo jogador."""
+
     def __init__(self):
         super().__init__()
-        self.image = load_image(PLAYER_IMG, (50, 38))
+        self.image = carregar_imagem(IMAGEM_JOGADOR, (50, 38))
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
-        self.rect.centerx = WIDTH // 2
-        self.rect.bottom = HEIGHT - 10
-        self.speed_x = 0
+        self.rect.centerx = LARGURA // 2
+        self.rect.bottom = ALTURA - 10
+        self.velocidade_x = 0
 
     def update(self):
-        self.speed_x = 0
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]: self.speed_x = -PLAYER_SPEED
-        if keys[pygame.K_RIGHT]: self.speed_x = PLAYER_SPEED
-        self.rect.x += self.speed_x
-        if self.rect.left < 0: self.rect.left = 0
-        if self.rect.right > WIDTH: self.rect.right = WIDTH
+        self.velocidade_x = 0
+        teclas = pygame.key.get_pressed()
+        if teclas[pygame.K_LEFT]:
+            self.velocidade_x = -VELOCIDADE_JOGADOR
+        if teclas[pygame.K_RIGHT]:
+            self.velocidade_x = VELOCIDADE_JOGADOR
+        self.rect.x += self.velocidade_x
+        # Mantém a nave dentro dos limites horizontais da tela
+        if self.rect.left < 0:
+            self.rect.left = 0
+        if self.rect.right > LARGURA:
+            self.rect.right = LARGURA
 
-class Meteor(pygame.sprite.Sprite):
-    def __init__(self):
+
+class Meteoro(pygame.sprite.Sprite):
+    """Meteoro que cai do topo da tela em velocidade aleatória."""
+
+    def __init__(self, multiplicador_velocidade=1.0):
         super().__init__()
-        size = random.randint(30, 70)
-        self.image = load_image(METEOR_IMG, (size, size))
+        tamanho = random.randint(30, 70)
+        self.image = carregar_imagem(IMAGEM_METEORO, (tamanho, tamanho))
         self.rect = self.image.get_rect()
         self.mask = pygame.mask.from_surface(self.image)
-        self.rect.x = random.randrange(WIDTH - self.rect.width)
+        self.rect.x = random.randrange(LARGURA - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
-        self.speed_y = random.randrange(METEOR_MIN_SPEED, METEOR_MAX_SPEED)
+        velocidade_base = random.randrange(VELOCIDADE_METEORO_MIN, VELOCIDADE_METEORO_MAX)
+        self.velocidade_y = int(velocidade_base * multiplicador_velocidade)
 
     def update(self):
-        self.rect.y += self.speed_y
-        if self.rect.top > HEIGHT + 10: self.kill()
+        self.rect.y += self.velocidade_y
+        # Remove o sprite quando sai da tela pela parte inferior
+        if self.rect.top > ALTURA + 10:
+            self.kill()
 
-class Crystal(pygame.sprite.Sprite):
+
+class Cristal(pygame.sprite.Sprite):
+    """Cristal de energia que cai do topo e pode ser coletado para ganhar pontos."""
+
     def __init__(self):
         super().__init__()
-        self.image = load_image(CRYSTAL_IMG, (30, 30))
+        self.image = carregar_imagem(IMAGEM_CRISTAL, (30, 30))
         self.rect = self.image.get_rect()
-        self.rect.x = random.randrange(WIDTH - self.rect.width)
+        self.rect.x = random.randrange(LARGURA - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
-        self.speed_y = CRYSTAL_SPEED
+        self.velocidade_y = VELOCIDADE_CRISTAL
 
     def update(self):
-        self.rect.y += self.speed_y
-        if self.rect.top > HEIGHT + 10: self.kill()
+        self.rect.y += self.velocidade_y
+        # Remove o sprite quando sai da tela pela parte inferior
+        if self.rect.top > ALTURA + 10:
+            self.kill()
